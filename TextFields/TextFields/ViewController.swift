@@ -15,23 +15,30 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var textField2: UITextField!
     @IBOutlet weak var textField3: UITextField!
     @IBOutlet weak var characterCountLabel: UILabel!
+    @IBOutlet weak var lockSwitch: UISwitch!
     
     // Text Field Delegate objects
     let emojiDelegate = EmojiTextFieldDelegate()
     let colorizerDelegate = ColorizerTextFieldDelegate()
+    let randomColorDelegate = RandomColorTextFieldDelegate()
+    let zipCodeDelegate = ZipCodeTextFieldDelegate()
+    let cashDelegate = CashTextFieldDelegate()
+    let lockableDelegate = LockableTextFieldDelegate()
     
     // Life Cycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        lockableDelegate.lockSwitch = self.lockSwitch
     
         // set the label to be hidden
         self.characterCountLabel.hidden = true
         
         // Set the three delegates
-        self.textField1.delegate = emojiDelegate
-        self.textField2.delegate = colorizerDelegate
-        self.textField3.delegate = self
+        self.textField1.delegate = zipCodeDelegate
+        self.textField2.delegate = cashDelegate
+        self.textField3.delegate = lockableDelegate
     }
 
     
