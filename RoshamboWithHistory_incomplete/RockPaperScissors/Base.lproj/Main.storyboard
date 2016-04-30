@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="iYZ-Mq-4iF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="iYZ-Mq-4iF">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Rock Paper Scissors View Controller-->
@@ -51,6 +53,13 @@
                                 </state>
                                 <connections>
                                     <action selector="makeYourMove:" destination="iYZ-Mq-4iF" eventType="touchUpInside" id="fGy-X8-GSq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Te8-Am-bzi">
+                                <rect key="frame" x="131" y="412" width="52" height="30"/>
+                                <state key="normal" title="History"/>
+                                <connections>
+                                    <segue destination="m7n-gt-mnz" kind="modal" id="5b7-UZ-hDA"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -123,6 +132,65 @@
             </objects>
             <point key="canvasLocation" x="809" y="141"/>
         </scene>
+        <!--HistoryViewController-->
+        <scene sceneID="bR0-lq-lJu">
+            <objects>
+                <viewController title="HistoryViewController" id="m7n-gt-mnz" customClass="HistoryViewController" customModule="RockPaperScissors" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="raY-sa-gaY"/>
+                        <viewControllerLayoutGuide type="bottom" id="oar-fB-wns"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="O5k-Yi-NF3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eni-dk-Ek7">
+                                <rect key="frame" x="0.0" y="28" width="320" height="540"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="History" textLabel="Snx-nM-m2K" detailTextLabel="d6i-gp-3Lq" style="IBUITableViewCellStyleValue1" id="aYd-nc-jvR">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aYd-nc-jvR" id="mfe-dl-k4f">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Snx-nM-m2K">
+                                                    <rect key="frame" x="15" y="12" width="31.5" height="19.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="d6i-gp-3Lq">
+                                                    <rect key="frame" x="263.5" y="12" width="41.5" height="19.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="m7n-gt-mnz" id="vYl-9K-te6"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="oar-fB-wns" firstAttribute="top" secondItem="eni-dk-Ek7" secondAttribute="bottom" id="9iG-Za-flx"/>
+                            <constraint firstItem="eni-dk-Ek7" firstAttribute="top" secondItem="raY-sa-gaY" secondAttribute="bottom" constant="8" id="MHL-k8-Qnf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="eni-dk-Ek7" secondAttribute="trailing" constant="-20" id="Scc-wk-B9U"/>
+                            <constraint firstItem="eni-dk-Ek7" firstAttribute="leading" secondItem="O5k-Yi-NF3" secondAttribute="leadingMargin" constant="-20" id="sXQ-Cf-try"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rvF-Yc-2yL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-58" y="141"/>
+        </scene>
     </scenes>
     <resources>
         <image name="paper" width="75" height="65"/>
@@ -130,11 +198,6 @@
         <image name="rock-paper-scissors1" width="460" height="276"/>
         <image name="scissors" width="75" height="65"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Ih9-HG-qHO"/>
     </inferredMetricsTieBreakers>
