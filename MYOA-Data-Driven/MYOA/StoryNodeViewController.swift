@@ -37,13 +37,25 @@ class StoryNodeViewController: UIViewController, UITableViewDelegate, UITableVie
     
         func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
             //TODO: Implement to push the next story node.
+            
+            // Get the next node
+            let nextNodeInTheAdventure = storyNode.storyNodeForIndex(indexPath.row)
+            
+            // Get a StoryNodeController from the Storyboard
+            let storyNodeController = self.storyboard!.instantiateViewControllerWithIdentifier("StoryNodeViewController")as! StoryNodeViewController
+            
+            // Set the story node so that we will see the next part of the story
+            storyNodeController.storyNode = nextNodeInTheAdventure
+            
+            // Push the new controller onto the stack
+            self.navigationController!.pushViewController(storyNodeController, animated: true)
     
     }
     
     
         func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             // TODO: Return the number of prompts in the storyNode (The 2 is just a place holder)
-            return 2
+            return storyNode.promptCount()
         }
     
         func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -51,7 +63,7 @@ class StoryNodeViewController: UIViewController, UITableViewDelegate, UITableVie
             
             let cell = tableView.dequeueReusableCellWithIdentifier("Cell")! 
     
-            cell.textLabel!.text = "Place holder prompt"
+            cell.textLabel!.text = storyNode.promptForIndex(indexPath.row)
             
             return cell
         }
