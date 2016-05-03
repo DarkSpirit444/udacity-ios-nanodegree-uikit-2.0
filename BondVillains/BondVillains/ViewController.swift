@@ -23,7 +23,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("VillainCell") as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("VillainCell") as UITableViewCell!
         let villain = self.allVillains[indexPath.row]
         
         // Set the name and image
@@ -36,6 +36,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("VillainDetailViewController") as! VillainDetailViewController
+        vc.villian = self.allVillains[indexPath.row]
+        if let navController = self.navigationController {
+            navController.pushViewController(vc, animated: true)
+        }
     }
 
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
