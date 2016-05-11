@@ -13,6 +13,7 @@ import UIKit
 class VillainCollectionViewController: UICollectionViewController {
  
     //TODO: Add outlet to flowLayout here.
+    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
     // Get ahold of some villains, for the table
     // This is an array of Villain instances
@@ -22,6 +23,17 @@ class VillainCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         
         //TODO: Implement flowLayout here.
+        let space: CGFloat = 3.0
+        
+        //var dimension: CGFloat
+        //if UIDevice.currentDevice().orientation == .Portrait {
+            let dimensionWidth = (view.frame.size.width - (2 * space)) / 3.0
+        //} else {
+            let dimensionHeight = (view.frame.size.height - (2 * space)) / 5.0
+        //}
+        
+        flowLayout.minimumInteritemSpacing = space
+        flowLayout.itemSize = CGSizeMake(dimensionWidth, dimensionHeight)
     }
 
     override func viewWillAppear(animated: Bool) {
